@@ -1,7 +1,7 @@
 package models
 
 type SettingsList struct {
-	Meta                     interface{}        `json:"meta"`
+	Meta                     Meta               `json:"meta"`
 	Logs                     Logs               `json:"logs"`
 	Backups                  Backups            `json:"backups"`
 	Smtp                     Smtp               `json:"smtp"`
@@ -20,6 +20,23 @@ type SettingsList struct {
 	TwitterAuth              OAuthConfiguration `json:"twitterAuth"`
 	MicrosoftAuth            OAuthConfiguration `json:"microsoftAuth"`
 	SpotifyAuth              OAuthConfiguration `json:"spotifyAuth"`
+}
+
+type Meta struct {
+	AppName                    string        `json:"appName"`
+	AppUrl                     string        `json:"appUrl"`
+	HideControls               *bool         `json:"hideControls"`
+	SenderName                 string        `json:"senderName"`
+	SenderAddress              string        `json:"senderAddress"`
+	VerificationTemplate       EmailTemplate `json:"verificationTemplate"`
+	ResetPasswordTemplate      EmailTemplate `json:"resetPasswordTemplate"`
+	ConfirmEmailChangeTemplate EmailTemplate `json:"confirmEmailChangeTemplate"`
+}
+
+type EmailTemplate struct {
+	ActionUrl string `json:"actionUrl"`
+	Body      string `json:"body"`
+	Subject   string `json:"subject"`
 }
 
 type Logs struct {
@@ -65,4 +82,41 @@ type OAuthConfiguration struct {
 type FacebookAuth struct {
 	Enabled            bool `json:"enabled"`
 	AllowRegistrations bool `json:"allowRegistrations"`
+}
+
+type SettingsUpdateRequest struct {
+	Meta                     *Meta               `json:"meta,omitempty"`
+	Logs                     *Logs               `json:"logs,omitempty"`
+	Backups                  *Backups            `json:"backups,omitempty"`
+	Smtp                     *Smtp               `json:"smtp,omitempty"`
+	S3                       *S3                 `json:"s3,omitempty"`
+	AdminAuthToken           *AuthToken          `json:"adminAuthToken,omitempty"`
+	AdminPasswordResetToken  *AuthToken          `json:"adminPasswordResetToken,omitempty"`
+	RecordAuthToken          *AuthToken          `json:"recordAuthToken,omitempty"`
+	RecordPasswordResetToken *AuthToken          `json:"recordPasswordResetToken,omitempty"`
+	RecordEmailChangeToken   *AuthToken          `json:"recordEmailChangeToken,omitempty"`
+	RecordVerificationToken  *AuthToken          `json:"recordVerificationToken,omitempty"`
+	GoogleAuth               *OAuthConfiguration `json:"googleAuth,omitempty"`
+	FacebookAuth             *FacebookAuth       `json:"facebookAuth,omitempty"`
+	GithubAuth               *OAuthConfiguration `json:"githubAuth,omitempty"`
+	GitlabAuth               *OAuthConfiguration `json:"gitlabAuth,omitempty"`
+	DiscordAuth              *OAuthConfiguration `json:"discordAuth,omitempty"`
+	TwitterAuth              *OAuthConfiguration `json:"twitterAuth,omitempty"`
+	MicrosoftAuth            *OAuthConfiguration `json:"microsoftAuth,omitempty"`
+	SpotifyAuth              *OAuthConfiguration `json:"spotifyAuth,omitempty"`
+}
+
+type SettingsS3StorageTestRequest struct {
+	Filesystem string `json:"filesystem"`
+}
+
+type SettingsResponse struct {
+	Code    *string `json:"code"`
+	Message *string `json:"message"`
+	Data    *any    `json:"data"`
+}
+
+type SettingsSendTestEmailRequest struct {
+	Email    string `json:"email"`
+	Template string `json:"template"`
 }

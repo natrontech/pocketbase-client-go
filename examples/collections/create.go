@@ -24,10 +24,10 @@ func CreateCollection() {
 		},
 	}
 
-	ar, err := examples.Client.CreateCollection(&base)
+	resp, err := examples.Client.CreateCollection(&base)
 	if err != nil {
 		panic(err)
 	}
 
-	println(ar.Id)
+	println(resp.Id)
 }
