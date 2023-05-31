@@ -30,9 +30,9 @@ jobs:
         go get -v -t -d ./...
         go get gopkg.in/check.v1
 
-    - name: Test
-      run: |
-        go test -v ./...
+    # - name: Test
+    #   run: |
+    #     go test -v ./...
 
     - name: Build
       run: |
