@@ -165,7 +165,7 @@ func (c *Client) UpdateAdmin(id string, admin *models.AdminUpdateRequest) (*mode
 		return nil, err
 	}
 
-	req, err := http.NewRequest("PUT", fmt.Sprintf("%s/api/admins/%s", c.Endpoint, id), strings.NewReader(string(rb)))
+	req, err := http.NewRequest("PATCH", fmt.Sprintf("%s/api/admins/%s", c.Endpoint, id), strings.NewReader(string(rb)))
 	if err != nil {
 		return nil, err
 	}
