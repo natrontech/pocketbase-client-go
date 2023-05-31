@@ -56,7 +56,7 @@ func NewClient(endpoint, identity, password *string) (*Client, error) {
 		Password: *password,
 	}
 
-	ar, err := c.SignIn()
+	ar, err := c.AuthWithPassword()
 	if err != nil {
 		return nil, err
 	}
@@ -73,7 +73,7 @@ func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error)
 		token = *authToken
 	}
 
-	if token == "" {
+	if token != "" {
 		req.Header.Set("Authorization", token)
 	}
 
