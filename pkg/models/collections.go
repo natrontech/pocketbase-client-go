@@ -7,26 +7,26 @@ import (
 type Collection struct {
 	pb_models.BaseModel
 
-	Name       string   `json:"name"`
-	Type       string   `json:"type"`
-	Schema     []Schema `json:"schema"`
-	ListRule   string   `json:"listRule"`
-	ViewRule   string   `json:"viewRule"`
-	CreateRule string   `json:"createRule"`
-	UpdateRule string   `json:"updateRule"`
-	DeleteRule string   `json:"deleteRule"`
-	Options    any      `json:"options"`
-	Indexes    []string `json:"indexes"`
+	Name       string      `json:"name"`
+	Type       string      `json:"type"`
+	Schema     []Schema    `json:"schema"`
+	ListRule   string      `json:"listRule"`
+	ViewRule   string      `json:"viewRule"`
+	CreateRule string      `json:"createRule"`
+	UpdateRule string      `json:"updateRule"`
+	DeleteRule string      `json:"deleteRule"`
+	Options    interface{} `json:"options"`
+	Indexes    []string    `json:"indexes"`
 }
 
 type Schema struct {
-	System   bool   `json:"system"`
-	ID       string `json:"id"`
-	Name     string `json:"name"`
-	Type     string `json:"type"`
-	Required bool   `json:"required"`
-	Unique   bool   `json:"unique"`
-	Options  any    `json:"options"`
+	System   bool        `json:"system"`
+	ID       string      `json:"id"`
+	Name     string      `json:"name"`
+	Type     string      `json:"type"`
+	Required bool        `json:"required"`
+	Unique   bool        `json:"unique"`
+	Options  interface{} `json:"options"`
 }
 
 type CollectionList struct {
@@ -59,7 +59,7 @@ type CollectionCreateRequest struct {
 	// optional deleteRule
 	DeleteRule *string `json:"deleteRule,omitempty"`
 	// optional options
-	Options *any `json:"options,omitempty"`
+	Options *interface{} `json:"options,omitempty"`
 	// optional indexes
 	Indexes *[]string `json:"indexes,omitempty"`
 }
@@ -84,7 +84,7 @@ type CollectionUpdateRequest struct {
 	// optional deleteRule
 	DeleteRule *string `json:"deleteRule,omitempty"`
 	// optional options
-	Options *any `json:"options,omitempty"`
+	Options *interface{} `json:"options,omitempty"`
 	// optional indexes
 	Indexes *[]string `json:"indexes,omitempty"`
 }
