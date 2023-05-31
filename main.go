@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/natrontech/pocketbase-client-go/pkg/client"
-	"github.com/natrontech/pocketbase-client-go/pkg/models"
 )
 
 func main() {
@@ -15,28 +14,35 @@ func main() {
 		panic(err)
 	}
 
-	base := models.CollectionCreateRequest{
-		Name: "Base",
-		Type: "base",
-		Schema: []models.Schema{
-			models.Schema{
-				Name:     "title",
-				Type:     "text",
-				Required: true,
-				Options: struct {
-					Min int `json:"min"`
-				}{
-					Min: 10,
-				},
-			},
-		},
-	}
+	// base := models.CollectionCreateRequest{
+	// 	Name: "Base",
+	// 	Type: "base",
+	// 	Schema: []models.Schema{
+	// 		models.Schema{
+	// 			Name:     "title",
+	// 			Type:     "text",
+	// 			Required: true,
+	// 			Options: struct {
+	// 				Min int `json:"min"`
+	// 			}{
+	// 				Min: 10,
+	// 			},
+	// 		},
+	// 	},
+	// }
 
-	ar, err := c.CreateCollection(&base)
+	// ar, err := c.CreateCollection(&base)
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// println(ar.Id)
+
+	health, err := c.HealthCheck()
 	if err != nil {
 		panic(err)
 	}
 
-	println(ar.Id)
+	println(health.Message)
 
 }
