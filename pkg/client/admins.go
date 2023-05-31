@@ -91,7 +91,7 @@ func (c *Client) ConfirmPasswordReset(token, password, passwordConfirm string) e
 }
 
 // ListAdmins - Returns a paginated admins list. Only admins can access this action.
-func (c *Client) ListAdmins() (*models.AdminResponse, error) {
+func (c *Client) ListAdmins() (*models.AdminList, error) {
 	req, err := http.NewRequest("GET", fmt.Sprintf("%s/api/admins", c.Endpoint), nil)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ func (c *Client) ListAdmins() (*models.AdminResponse, error) {
 		return nil, err
 	}
 
-	admins := models.AdminResponse{}
+	admins := models.AdminList{}
 	err = json.Unmarshal(body, &admins)
 	if err != nil {
 		return nil, err

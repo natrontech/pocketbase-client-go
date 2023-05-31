@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/natrontech/pocketbase-client-go/pkg/client"
 	"github.com/natrontech/pocketbase-client-go/pkg/models"
 )
@@ -17,15 +15,28 @@ func main() {
 		panic(err)
 	}
 
-	newAdmin := models.AdminCreateRequest{
-		Email:           "test@test.ch",
-		Password:        "0123456789",
-		PasswordConfirm: "0123456789",
+	base := models.CollectionCreateRequest{
+		Name: "Base",
+		Type: "base",
+		Schema: []models.Schema{
+			models.Schema{
+				Name:     "title",
+				Type:     "text",
+				Required: true,
+				Options: struct {
+					Min int `json:"min"`
+				}{
+					Min: 10,
+				},
+			},
+		},
 	}
-	ar, err := c.CreateAdmin(&newAdmin)
+
+	ar, err := c.CreateCollection(&base)
 	if err != nil {
 		panic(err)
 	}
 
-	fmt.Println(ar)
+	println(ar.Id)
+
 }

@@ -11,7 +11,7 @@ type Admin struct {
 	Email  string `json:"email"`
 }
 
-type AdminResponse struct {
+type AdminList struct {
 	Page       int     `json:"page"`
 	PerPage    int     `json:"perPage"`
 	TotalItems int     `json:"totalItems"`
