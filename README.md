@@ -10,6 +10,14 @@ Oriented to the Pocketbase Documentation <https://pocketbase.io/docs/api-records
 
 - pocketbase version: `v0.16.3`
 
+## Usage
+
+```go
+go get github.com/natrontech/pocketbase-client-go
+```
+
+Take a look at the [examples](examples) folder how to use the client.
+
 ## Contributing
 
 Feel free to contribute to this project. Fork and make a Pull Request.
