@@ -11,9 +11,6 @@ jobs:
   go-build:
     name: Backend Build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: momentum-backend
     strategy:
       matrix:
         goVer: [1.20]
